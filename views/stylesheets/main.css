@@ -1,0 +1,21 @@
+.cantidad{
+   width: 4em;
+}
+
+.nota{
+   border: 1px solid;
+   width: auto;
+   
+}
+
+#notas .active{
+   background-color: #AFAFAF;
+}
+
+a {
+   margin: 3px;
+}
+
+span {
+   margin: 3px;
+}

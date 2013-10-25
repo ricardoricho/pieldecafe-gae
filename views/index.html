@@ -1,0 +1,80 @@
+{% extends "layouts/app.html" %}
+{% block menu %}
+<a href="/productos/new">
+  Agregar Producto
+</a>
+<ul id="menuTabs" class="nav nav-tabs">
+  <li class="active">
+	<a href="#bCalientes" data-toggle="tab">Bebidas Calientes</a>
+  </li>
+  <li>
+	<a href="#bFrias" data-toggle="tab">Bebidas Frias</a>
+  </li>
+  <li>
+	<a href="#alimentos" data-toggle="tab">Alimentos</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="bCalientes">
+	<ul class="categoria">
+	  {% for bebida in bebidas_calientes %}
+	  <li>
+		<a href="#" data-id="{{ bebida.key().id() }}"
+		   data-nombre="{{ bebida.nombre }}"
+		   data-precio="{{ bebida.precio }}">
+		  {{ bebida.nombre }}
+		</a>
+	  </li>
+	  {% endfor %}
+	</ul>
+  </div>
+  <div class="tab-pane" id="bFrias">
+	<ul class="categoria">
+	  {% for bebida in bebidas_frias %}
+	  <li>
+		<a href="#" data-id="{{ bebida.key().id() }}"
+		   data-nombre="{{ bebida.nombre }}"
+		   data-precio="{{ bebida.precio }}">
+		  {{ bebida.nombre }}
+		</a>
+	  </li>
+	  {% endfor %}
+	</ul>
+  </div>
+  <div class="tab-pane" id="alimentos">
+	<ul class="categoria">
+	  {% for alimento in alimentos %}
+	  <li>
+		<a href="#" data-id="{{ alimento.key().id() }}"
+		   data-nombre="{{ alimento.nombre }}"
+		   data-precio="{{ alimento.precio }}">
+		  {{ alimento.nombre }}
+		</a>
+	  </li>
+	  {% endfor %}
+	</ul>
+  </div>
+</div>
+{% endblock menu %}
+
+{% block notas %}
+<a href="#" id="nota_nueva">
+  Nueva Nota
+</a>
+{% endblock notas %}
+
+{% block modals %}
+<div id="modificadores" class="modal hide fade">
+  <div class="modal-header">
+	<h3>Modificadores</h3>
+  </div>
+  <div class="modal-body">
+  </div>
+  <div class="modal-footer">
+	<a href="#" class="btn btn-primary">Agregar</a>
+  </div>
+</div>
+{% endblock modals %}
+
+	  

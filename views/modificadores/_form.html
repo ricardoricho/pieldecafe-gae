@@ -1,0 +1,27 @@
+{% if modificador.is_saved() %}
+<form name="modificador" 
+	  method="POST" 
+	  action="/modificadores/{{ modificador.key().id() }}" >
+{% else %}
+  <form name="modificador" method="POST"
+		action="/modificadores"
+{% endif %}
+  <label for="tipo_modificador">
+	Tipo:
+  </label>
+  <select name="tipo_modificador">
+	{% for tipo_modificador in tipos_modificador %}
+	<option value="{{ tipo_modificador.key().id() }}">		
+	  {{ tipo_modificador.nombre }}
+	</option>
+	{% endfor %}
+  </select>
+  <br/>
+  <label>
+	Nombre:
+  </label>
+  <input type="text" value="{{ modificador.nombre }}" name="nombre" />
+  <br/>
+  <input type="submit" class="btn btn-danger" value="Guardar" />
+</form>
+

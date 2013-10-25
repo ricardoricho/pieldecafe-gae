@@ -1,0 +1,41 @@
+{% extends "layouts/admin.html" %}
+{% block imports %}
+<script type="text/javascript" src="/javascripts/notas.js">
+</script>
+{% endblock %}
+{% block contenido %}
+<h1> Nota: {{ nota.key().id() }} </h1>
+Fecha: {{ nota.fecha + delta }}
+<a href="/notas/{{ nota.key().id() }}" class="borrar btn btn-danger">
+  Borrar Nota
+</a> 
+<table class="table table-striped">
+  <thead>
+	<tr>
+	  <th>
+		Cantidad
+	  </th>
+	  <th>
+		Producto
+	  </th>
+	  <th></th>
+	</tr>
+  </thead>
+  <tbody>
+	{% for orden in nota.ordenes %}
+	<tr>
+	  <td>
+		{{ orden.cantidad }}
+	  </td>
+	  <td>
+		{{ orden.producto.nombre }}
+	  </td>
+	  <td>
+		Borrar
+	  </td>
+	</tr>
+	{% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

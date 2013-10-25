@@ -1,0 +1,37 @@
+{% extends "layouts/admin.html" %}
+{% block contenido %}
+<h1> Tipos de Modificador: </h1>
+<a class="btn btn-primary" href="/tipos_modificador/new">Nuevo Tipo de Modificador </a>
+<br/>
+<table class="table">
+  <tr>
+	<th> Nombre </th>
+	<th> Excluyente </th>
+	<th> </th>
+	<th> </th>
+  </tr>
+  {% for tipo_modificador in tipos_modificador %}
+  <tr>
+	<td>
+	  {{ tipo_modificador.nombre }}
+	</td>
+	<td>
+	  <input type="checkbox" name="excluyente"
+			 {{  "checked" if (tipo_modificador.excluyente) }} />
+	</td>
+	<td>
+	  <a href="/tipos_modificador/{{ tipo_modificador.key().id() }}/edit">
+		Editar
+	  </a>
+	</td>
+	<td>
+	  <a class="btn btn-danger" data-method="DELETE"
+		 href="/tipos_modificador/{{ tipo_modificador.key().id() }}">
+		Borrar
+	  </a>
+	</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock contenido %}
+

@@ -1,0 +1,16 @@
+{% extends "layouts/admin.html" %}
+{% block contenido %}
+Lista ordenes:<br/>
+<a href="/ordenes/new">Nueva Orden </a>
+<ul>
+{% for orden in ordenes %}
+<li>
+  <span> {{ orden.id }} </span>
+  <span> {{ orden.producto.nombre }}  </span>
+  <span> {{ orden.precioUnitario() }} </span> 
+  <span> {{ orden.precioTotal() }} </span> 
+
+</li>
+{% endfor %}
+</ul>
+{% endblock contenido %}

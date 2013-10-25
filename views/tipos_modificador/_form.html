@@ -1,0 +1,21 @@
+{% if tipo_modificador.is_saved() %}
+<form name="tipo_modificador" 
+	  method="POST" 
+	  action="/tipos_modificador/{{ tipo_modificador.key().id() }}" >
+{% else %}
+  <form name="tipo_modificador" method="POST"
+		action="/tipos_modificador"
+{% endif %}
+		
+		<label> Nombre </label>
+		<input type="text" 
+			   value="{{ tipo_modificador.nombre }}" 
+			   name="nombre" />
+		<br/>  
+		<label> ¿Excluyente? </label>
+		<input type="checkbox" name="excluyente" 
+			   {{  "checked" if (tipo_modificador.excluyente) }} />
+		<br/>
+		<input type="submit"
+			   value="Guardar" />
+</form>

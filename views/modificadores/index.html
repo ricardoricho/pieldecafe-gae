@@ -1,0 +1,36 @@
+{% extends "layouts/admin.html" %}
+{% block contenido %}
+<h1> Modificadores </h1>
+<a class="btn btn-primary" href="/modificadores/new"> Nuevo Modificador </a>
+<br/>
+<table class="table">
+  <tr>
+	<th> Nombre </th>
+	<th> Tipo </th>
+	<th> </th>
+	<th> </th>
+  </tr>
+  {% for modificador in modificadores %}
+  <tr>
+	<td>
+	  {{ modificador.nombre }}
+	</td>
+	<td>
+	  {{ modificador.tipo.nombre }}
+	</td>
+	<td>
+	  <a href="/modificadores/{{ modificador.key().id() }}/edit">
+		Editar
+	  </a>
+	</td>
+	<td>
+	  <a class="btn btn-danger" data-method="DELETE"
+		 href="/modificadores/{{ modificador.key().id() }}">
+		Borrar
+	  </a>
+	</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock contenido %}
+

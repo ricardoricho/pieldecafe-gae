@@ -1,0 +1,40 @@
+{% if producto.is_saved() %}
+<form name="producto" 
+	  method="POST" 
+	  action="/productos/{{ producto.key().id() }}" >
+  {% else %}
+  <form name="producto" 
+		method="POST"
+		action="/productos" >
+	{% endif %}
+	
+	<label> Categoría: </label>
+	<select name="categoria">
+	  {% for opcion in producto.categorias %}
+	  <option> {{ opcion }} </option>
+	  {% endfor %}
+	</select>
+	<br/>
+	<label> 
+	  Nombre: 
+	</label>
+	<input type="text" name="nombre"
+		   value="{{ producto.nombre }}" />
+	<br/>
+	<label> Precio </label>
+	<input type="text" name="precio" size="4"
+		   value="{{ producto.precio }}" /> 
+	<br/>
+	<input type="hidden" 
+		   value="{{ producto.key() if producto.has_key()}}"
+		   name="producto_key" />
+	
+	{%- if producto.has_key()  -%}
+	<a href="/modificadores/new?producto_key={{ producto.key() }}">
+	  Agregar Modificador
+	</a>
+	{% endif %}
+	<br />
+	<input type="submit" value="Guardar" />
+  </form>
+  

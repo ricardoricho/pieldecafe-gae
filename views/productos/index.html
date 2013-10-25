@@ -1,0 +1,196 @@
+{% extends "layouts/admin.html" %}
+{% block imports %}
+<script type="text/javascript"
+		src="/javascripts/productos.js">
+</script>
+{% endblock %}
+{% block contenido %}
+Lista productos:<br/>
+<a href="/productos/new">Nuevo Producto </a>
+
+<ul id="menuTabs" class="nav nav-tabs">
+  <li class="active">
+	<a href="#bCalientes" data-toggle="tab">Bebidas Calientes</a>
+  </li>
+  <li>
+	<a href="#bFrias" data-toggle="tab">Bebidas Frias</a>
+  </li>
+  <li>
+	<a href="#alimentos" data-toggle="tab">Alimentos</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="bCalientes">
+	<div class="accordion" id="calientes">
+	  {% for bebida in bebidas_calientes %}
+	  <div class="accordion-group">
+		<div class="accordion-heading">
+		  <a class="accordion-toggle" data-toggle="collapse"
+			 data-parent="#calientes" href="#{{ bebida.key() }}">
+			{{ bebida.nombre }}
+			<span class="precio"> {{ bebida.precio }} </span>
+		  </a>
+		</div>
+		<div id="{{ bebida.key() }}" class="accordion-body collapse">
+		  <div class="accordion-inner">
+			<table class="listaModificadores table">
+			  <tr>
+				<th>Nombre</th>
+				<th>Costo</th>
+				<th>Total</th>
+				<th></th>
+			  </tr>
+			  {% for modificador_producto in bebida.modificadores %}
+			  <tr>
+				<td>{{ modificador_producto.modificador.nombre }}</td>
+				<td>{{ modificador_producto.costo }}</td>
+				<td>{{ modificador_producto.costo + bebida.precio }} </td>
+				<td>
+				  <a href="#" 
+					 class="borrarModificadorProducto btn btn-danger"
+					 data-producto_id="{{ bebida.key().id() }}"
+					 data-modificador_producto_id="{{
+					 modificador_producto.key().id() }}">
+					Borrar
+				  </a> 
+				</td>
+			  </tr>
+			  {% endfor %}
+			</table>
+			<div class="nuevoModificador">
+			</div>
+			<span class="actions">
+			  <a href="/productos/{{ bebida.key().id() }}/edit">
+				Editar Producto
+			  </a>
+			  <a class="agregaModificador" 
+				 data-id="{{ bebida.key().id() }}"
+				 href="#">
+				Agregar Modificador
+			  </a>
+			</span>
+		  </div>
+		</div>
+	  </div>
+	  {% endfor %}
+	</div>
+  </div>
+
+  <div class="tab-pane" id="bFrias">
+	<div class="accordion" id="frias">
+	  {% for bebida in bebidas_frias %}
+	  <div class="accordion-group">
+		<div class="accordion-heading">
+		  <a class="accordion-toggle" 
+			 data-toggle="collapse"
+			 data-parent="#frias" href="#{{ bebida.key() }}">
+			{{ bebida.nombre }}
+			<span class="precio"> {{ bebida.precio }} </span>
+		  </a>
+		</div>
+		<div id="{{ bebida.key() }}" class="accordion-body collapse">
+		  <div class="accordion-inner">
+			<table class="listaModificadores table">
+			  <tr>
+				<th>Nombre</th>
+				<th>Costo</th>
+				<th>Total</th>
+				<th></th>
+			  </tr>
+			  {% for modificador_producto in bebida.modificadores %}
+			  <tr>
+				<td>{{ modificador_producto.modificador.nombre }}</td>
+				<td>{{ modificador_producto.costo }}</td>
+				<td>{{ modificador_producto.costo + bebida.precio }} </td>
+				<td>
+				  <a href="#" 
+					 class="borrarModificadorProducto btn btn-danger"
+					 data-producto_id="{{ bebida.key().id() }}"
+					 data-modificador_producto_id="{{
+					 modificador_producto.key().id() }}">
+					Borrar
+				  </a> 
+				</td>
+			  </tr>
+			  {% endfor %}
+			</table>
+			<div class="nuevoModificador">
+			</div>
+			<span class="actions">
+			  <a href="/productos/{{ bebida.key().id() }}/edit">
+				Editar Producto
+			  </a>
+			  <a class="agregaModificador" 
+				 data-id="{{ bebida.key().id() }}"
+				 href="#">
+				Agregar Modificador
+			  </a>
+			</span>
+		  </div>
+		</div>
+	  </div>
+	  {% endfor %}
+	</div>
+  </div>
+
+  <div class="tab-pane" id="alimentos">
+	<div class="accordion" id="alimentos">
+	  {% for alimento in alimentos %}
+	  <div class="accordion-group">
+		<div class="accordion-heading">
+		  <a class="accordion-toggle" 
+			 data-toggle="collapse"
+			 data-parent="#alimentos" href="#{{ alimento.key() }}">
+			{{ alimento.nombre }}
+			<span class="precio"> {{ alimento.precio }} </span>
+		  </a>
+		</div>
+		<div id="{{ alimento.key() }}" class="accordion-body collapse">
+		  <div class="accordion-inner">
+			<table class="listaModificadores table">
+			  <tr>
+				<th>Nombre</th>
+				<th>Costo</th>
+				<th>Total</th>
+				<th></th>
+			  </tr>
+			  {% for modificador_producto in alimento.modificadores %}
+			  <tr>
+				<td>{{ modificador_producto.modificador.nombre }}</td>
+				<td>{{ modificador_producto.costo }}</td>
+				<td>{{ modificador_producto.costo + alimento.precio }} </td>
+				<td>
+				  <a href="#" 
+					 class="borrarModificadorProducto btn btn-danger"
+					 data-producto_id="{{ alimento.key().id() }}"
+					 data-modificador_producto_id="{{
+					 modificador_producto.key().id() }}">
+					Borrar
+				  </a> 
+				</td>
+			  </tr>
+			  {% endfor %}
+			</table>
+			<div class="nuevoModificador">
+			</div>
+			<span class="actions">
+			  <a href="/productos/{{ alimento.key().id() }}/edit">
+				Editar Producto
+			  </a>
+			  <a class="agregaModificador" 
+				 data-id="{{ alimento.key().id() }}"
+				 href="#">
+				Agregar Modificador
+			  </a>
+			</span>
+		  </div>
+		</div>
+	  </div>
+	  {% endfor %}
+	</div>
+  </div>
+
+</div>
+
+{% endblock contenido %}

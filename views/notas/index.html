@@ -1,0 +1,43 @@
+{% extends "layouts/admin.html" %}
+{% block contenido %}
+<h1> Notas </h1>
+<form name="notas" action="/notas" method="GET">
+  <label>
+	Notas del día a partir de las:<br/>
+  </label>
+	<input type="text" name="hora_inicio" class="input-small"/> :
+	<input type="text" name="minuto_inicio" class="input-small"/><br/>
+	<button type="sumbit" class="btn">Buscar</button>
+</form>
+<table class="table table-striped">
+  <thead>
+	<tr>
+	  <th>
+		Fecha / Hora
+	  </th>
+	  <th>
+		Total
+	  </th>
+	  <th></th>
+	</tr>
+  </thead>
+  <tbody>
+	{% for nota in notas %}
+	<tr>
+	  <td>
+		<a href="/notas/{{ nota.key().id() }}">
+		  {{ nota.fecha + delta_time}}
+		</a>
+	  </td>
+	  <td>
+		{{ nota.total }}
+	  </td>
+	  <td>
+		{{ venta }}
+	  </td>
+	</tr>
+	{% endfor %}
+  </tbody>
+</table>
+Total Ventas: {{ total_venta }}
+{% endblock %}

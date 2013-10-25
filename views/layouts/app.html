@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+	<title>{% block title %} Principal {% endblock %} - Piel de Café </title>
+	<link href="/stylesheets/vendor/jquery-ui/swanky-purse/jquery-ui-1.9.2.custom.min.css"
+		  media="screen" rel="stylesheet" type="text/css" />
+	<link href="/stylesheets/vendor/bootstrap/css/bootstrap.min.css"
+		  media="screen" rel="stylesheet" type="text/css" />
+	<link href="/stylesheets/main.css" media="screen" rel="stylesheet"
+		  type="text/css" />
+
+    <script type="text/javascript"
+	 		src="/javascripts/vendor/jquery-1.8.2.min.js">
+	</script>
+	<script type="text/javascript"
+	 		src="/javascripts/vendor/bootstrap/bootstrap.min.js">
+	</script>
+    <script type="text/javascript"
+	 		src="/javascripts/models.js">
+	</script>
+	{% block import %} 
+	{% endblock %}
+  </head>
+  <body>
+	<div class="container">
+	  {% include "layouts/_menu.html" %}
+	  <div class="row">
+		<div id="notas" class="span5">		  
+		  {% block notas %}
+		  {% endblock %}
+		</div>
+		<div id="menu" class="span7">
+		  {% block menu %}
+		  {% endblock %}
+		</div>
+	  </div>
+	</div>
+	{% block modals %}
+	{% endblock %}
+	{% block javascripts %}
+	{% endblock javascripts %}
+  </body>
+</html>
